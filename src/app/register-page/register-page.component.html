@@ -1,3 +1,19 @@
-<p>
-  register-page works!
-</p>
+<body class="register-bg">
+
+  <mat-form-field color="accent" hintLabel="Max 20 characters" appearance="outline">
+    <mat-label>Username</mat-label>
+    <input matInput #input maxlength="20" placeholder="Enter a username" required>
+    <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field color="accent" hintLabel="Max 20 characters" appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput #inputPw maxlength="20" placeholder="Enter a password" [type]="hide ? 'password' : 'text'" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-hint align="end">{{inputPw.value?.length || 0}}/20</mat-hint>
+  </mat-form-field>
+
+  </body>
