@@ -1,3 +1,52 @@
 <body class="login-bg">
+    <mat-card class="login-card">
 
+        <mat-card-header>
+            <mat-card-title> <img mat-card-image src="/assets/img/login_logo.png" alt="DAYZCC Logo"> </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form>
+
+                <mat-form-field class="fit-card" appearance="outline">
+
+                    <mat-label>Email</mat-label>
+
+                    <input [(ngModel)]="loginUserData.email" name="email" type="text" matInput
+                        placeholder="Enter your email" [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                        required>
+
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Please enter a valid email address </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')"> Email is required ! </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field class="fit-card" hintLabel="Max 30 characters" appearance="outline">
+
+                    <mat-label>Password</mat-label>
+
+                    <input [(ngModel)]="loginUserData.password" name="password" type="text" matInput #passInput
+                        maxlength="30" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
+
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Show password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+
+                    <mat-hint align="end">{{passInput.value?.length || 0}}/30</mat-hint>
+
+                </mat-form-field>
+
+            </form>
+        </mat-card-content>
+
+        <mat-card-actions>
+
+            <button (click)="login()" color="primary" mat-raised-button>Login</button>
+            <button routerLink="/register" color="primary" mat-raised-button>Registration</button>
+
+        </mat-card-actions>
+
+    </mat-card>
 </body>

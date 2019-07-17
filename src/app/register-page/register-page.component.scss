@@ -1,5 +1,14 @@
 .register-bg {
 
-    //background-image: url(/assets/img/login_bg.jpg);
-    background-color: rgb(71, 71, 71);
+    background-image: url(/assets/img/login_bg.jpg);
+    //background-color: rgb(71, 71, 71);
+    //background-color: rgb(54, 57, 70);
+}
+
+.register-card {
+    max-width: 400px;
+}
+
+.fit-card {
+    width: 100%;
 }
