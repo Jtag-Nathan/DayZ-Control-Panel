@@ -25,3 +25,11 @@ body {
   //background-color: #ccc;
   border-radius: 3px;
 }
+
+::ng-deep .green-snackbar {
+    background: rgb(40, 167, 69) !important;
+}
+
+::ng-deep .red-snackbar {
+    background: rgb(158, 2, 38) !important;
+}

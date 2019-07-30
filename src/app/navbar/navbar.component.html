@@ -1,8 +1,39 @@
-<mat-toolbar class="custom-toolbar">
-  <span class="toolbar-logo"><img src="assets/img/login_logo.png"></span>
-
+<mat-toolbar class="toolbar-logo">
+  <span><img src="assets/img/login_logo.png"></span>
   <!-- This fills the remaining space of the current row -->
-  <span class="example-fill-remaining-space"></span>
-
-  <span>Login / Register</span>
+  <span class="fill-remaining-space"></span>
 </mat-toolbar>
+
+<mat-toolbar class="toolbar-buttons">
+  <span>
+      <button mat-button (click)="press()">Dashboard</button>
+      <button mat-button>Manage</button>
+      <button mat-button>Entities & Info</button>
+      <button mat-button>Map</button>
+      <button mat-button>Feed</button>
+      <button mat-button>Tools</button>
+  </span>
+
+  <span class="fill-remaining-space"></span>
+
+  <span>
+      <button [matMenuTriggerFor]="accountMenu" mat-icon-button matTooltip="Account">
+          <mat-icon class="md-logocol">account_circle</mat-icon>
+        </button>
+  </span>
+</mat-toolbar>
+
+<mat-menu #accountMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>settings</mat-icon>Settings
+  </button>
+  <button mat-menu-item>
+    <mat-icon>help</mat-icon>Help
+  </button>
+  <button mat-menu-item>
+    <mat-icon>build</mat-icon>Admin
+  </button>
+  <button (click)="auth.logout()" mat-menu-item>
+    <mat-icon>exit_to_app</mat-icon>Logout
+  </button>
+</mat-menu>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
+import { MatSnackBar} from '@angular/material';
 import {FormControl, Validators, FormGroupDirective, NgForm} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from '../auth.service';
@@ -20,7 +22,7 @@ export class LoginPageComponent implements OnInit {
 
   loginUserData = {};
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private snackbar: MatSnackBar, private router: Router) { }
 
     // tslint:disable-next-line: member-ordering
     emailFormControl = new FormControl('', [
@@ -36,8 +38,18 @@ export class LoginPageComponent implements OnInit {
   login() {
     this.auth.loginUser(this.loginUserData)
     .subscribe(
-      res => console.log(res),
-      err => console.log(err)
+      res => {
+        console.log(res);
+        localStorage.setItem('token', res.token);
+        this.snackbar.open(res.message, '', {
+          duration: 2000,
+          panelClass: ['green-snackbar']
+        });
+        this.router.navigate(['/dashboard']);
+      },
+      err => {
+        console.log(err);
+      }
     );
   }
 }

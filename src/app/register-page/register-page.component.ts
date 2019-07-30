@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
+import { MatSnackBar} from '@angular/material';
 import {FormControl, Validators, FormGroupDirective, NgForm} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from '../auth.service';
@@ -20,7 +22,7 @@ export class RegisterPageComponent implements OnInit {
 
   registerUserData = {};
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private snackbar: MatSnackBar, private router: Router) { }
 
   hide = true;
 
@@ -39,8 +41,17 @@ export class RegisterPageComponent implements OnInit {
   register() {
     this.auth.registerUser(this.registerUserData)
     .subscribe(
-      res => console.log(res),
-      err => console.log(err)
+      res => {
+        console.log(res);
+        this.snackbar.open(res.message, '', {
+          duration: 2000,
+          panelClass: ['green-snackbar']
+        });
+        this.router.navigate(['/login']);
+      },
+      err => {
+        console.log(err);
+      }
     );
   }
 }
